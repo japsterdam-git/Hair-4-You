@@ -34,7 +34,7 @@ async function loadCredentials() {
 const CONFIG = {
   SPREADSHEET_ID: "1BaeDZl27e96oARvMj78NUi45JepW4lYQZL_rspD6UFw",
   RANGE: "Sheet1!C2",
-  API_URL: "https://your-app-name.vercel.app/api/sheet-data", // Update with your Vercel URL
+  API_URL: "https://hair-4-you-1w5nx9asc-japsterdam-gits-projects.vercel.app/api/sheet-data", // Update with your Vercel URL
   GOAL_AMOUNT: 20000000, // 20 million IDR
   UPDATE_INTERVAL: 10000, // Update every 10 seconds
   RETRY_DELAY: 5000, // Retry after 5 seconds if error
