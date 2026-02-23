@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donation Tracker - Live Progress</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 class="title">Hair 4 You</h1>
+        <div class="stats">
+          <div class="current-amount">
+            <span class="amount-label">Current Total</span>
+            <span class="amount-value" id="currentAmount">Rp 0</span>
+          </div>
+          <div class="goal-amount">
+            <span class="amount-label">Goal</span>
+            <span class="amount-value">Rp 20,000,000</span>
+          </div>
+        </div>
+        <div class="next-milestone" id="nextMilestone">
+          <span class="next-milestone-label">Next Milestone:</span>
+          <span class="next-milestone-amount" id="nextMilestoneAmount"
+            >Rp 0</span
+          >
+        </div>
+        <div class="amount-left-container" id="amountLeftContainer">
+          <span class="amount-left-label">Amount Left to Next Milestone:</span>
+          <span class="amount-left-value" id="amountLeftValue">Rp 0</span>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <div class="progress-container">
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar" id="progressBar">
+              <div class="progress-fill" id="progressFill"></div>
+              <div class="milestone-markers" id="milestoneMarkers"></div>
+            </div>
+            <div class="progress-percentage" id="progressPercentage">0%</div>
+          </div>
+          <div
+            class="milestone-details-container"
+            id="milestoneDetailsContainer"
+          >
+            <!-- Milestone names and photo frames will be dynamically generated -->
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <div class="connection-status" id="connectionStatus">
+          <span class="status-dot"></span>
+          <span class="status-text">Ready</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
