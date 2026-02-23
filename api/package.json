@@ -1,0 +1,14 @@
+{
+  "name": "donation-tracker-api",
+  "version": "1.0.0",
+  "description": "Backend API for donation tracker with Google Sheets integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "googleapis": "^126.0.1",
+    "cors": "^2.8.5"
+  }
+}
