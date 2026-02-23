@@ -1,35 +1,3 @@
-// Load credentials from JSON file
-let CREDENTIALS = {};
-let credentialsLoaded = false;
-
-// Testing flag - set to false for production
-const USE_LOCAL_CREDENTIALS_FOR_TESTING = false;
-
-// Function to load credentials from JSON
-async function loadCredentials() {
-  try {
-    const response = await fetch("credentials.json");
-    if (!response.ok) {
-      throw new Error("Credentials file not found");
-    }
-    CREDENTIALS = await response.json();
-    credentialsLoaded = true;
-    console.log("Service account credentials loaded successfully");
-  } catch (error) {
-    console.error("Error loading credentials:", error);
-    // Fallback to demo mode
-    CREDENTIALS = {
-      type: "service_account",
-      project_id: "demo-project",
-      private_key:
-        "-----BEGIN PRIVATE KEY-----\nDEMO_KEY\n-----END PRIVATE KEY-----\n",
-      client_email: "demo@demo-project.iam.gserviceaccount.com",
-      client_id: "demo-client-id",
-    };
-    credentialsLoaded = true;
-  }
-}
-
 // Configuration - Service account via backend API
 const CONFIG = {
   SPREADSHEET_ID: "1BaeDZl27e96oARvMj78NUi45JepW4lYQZL_rspD6UFw",
