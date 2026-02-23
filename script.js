@@ -1,8 +1,10 @@
+// No local credential loading - using backend API only
+
 // Configuration - Service account via backend API
 const CONFIG = {
   SPREADSHEET_ID: "1BaeDZl27e96oARvMj78NUi45JepW4lYQZL_rspD6UFw",
   RANGE: "Sheet1!C2",
-  API_URL: "https://hair-4-you-api.vercel.app/api/sheet-data", // Update with your Vercel URL
+  API_URL: "https://https://hair-4-you-api.vercel.app//api/sheet-data", // Update with your Vercel URL
   GOAL_AMOUNT: 20000000, // 20 million IDR
   UPDATE_INTERVAL: 10000, // Update every 10 seconds
   RETRY_DELAY: 5000, // Retry after 5 seconds if error
@@ -88,52 +90,32 @@ async function fetchDonationDataDirect() {
 // Fetch donation data from backend API
 async function fetchDonationData() {
   console.log("=== fetchDonationData called ===");
-  console.log(
-    "USE_LOCAL_CREDENTIALS_FOR_TESTING:",
-    USE_LOCAL_CREDENTIALS_FOR_TESTING,
-  );
 
-  // Use direct API call for testing if flag is set
-  if (USE_LOCAL_CREDENTIALS_FOR_TESTING) {
-    console.log("Entering testing mode branch");
-    updateConnectionStatus("connecting");
-    try {
-      console.log("About to call fetchDonationDataDirect...");
-      const amount = await fetchDonationDataDirect();
-      console.log("fetchDonationDataDirect returned:", amount);
-      updateConnectionStatus("connected");
-      return amount;
-    } catch (error) {
-      console.error("Simulation error:", error);
-      updateConnectionStatus("connected"); // Still show as connected for simulation
-      return currentAmount;
-    }
-  }
+  updateConnectionStatus("connecting");
 
-  // Normal backend API call
-  console.log("Entering normal backend mode");
   try {
-    updateConnectionStatus("connecting");
-
+    console.log("Making API call to:", CONFIG.API_URL);
     const response = await fetch(CONFIG.API_URL);
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
 
     const data = await response.json();
+    console.log("API Response:", data);
 
     if (data.success) {
-      console.log("Fetched donation amount from backend:", data.amount);
       updateConnectionStatus("connected");
+      updateProgress(data.amount);
       return data.amount;
     } else {
-      throw new Error(data.error || "Backend error");
+      throw new Error(data.error || "Unknown API error");
     }
   } catch (error) {
-    console.error("Error fetching data from backend:", error);
+    console.error("Error fetching donation data:", error);
     updateConnectionStatus("error");
-    return currentAmount; // Return last known amount on error
+    updateProgress(0);
+    return 0;
   }
 }
 
@@ -144,17 +126,11 @@ function sleep(ms) {
 
 // Check if backend API is configured
 function isGoogleSheetsConfigured() {
-  if (USE_LOCAL_CREDENTIALS_FOR_TESTING) {
-    return true; // Use local credentials for testing
-  }
-  return (
-    CONFIG.API_URL !== "https://your-backend-url.onrender.com/api/sheet-data"
-  );
+  return CONFIG.API_URL !== "https://hair-4-you-api.vercel.app/api/sheet-data";
 }
 
 // Initialize the application
-document.addEventListener("DOMContentLoaded", async function () {
-  await loadCredentials();
+document.addEventListener("DOMContentLoaded", function () {
   initializeApp();
 });
 
