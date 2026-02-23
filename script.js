@@ -60,22 +60,22 @@ const CONFIG = {
       image: "images/milestone4.jpg", // Add your image path here
     },
     {
-      name: "Mr. Kumar",
-      amount: 9500000,
+      name: "Ms. Kilpatrick",
+      amount: 9000000,
       image: "images/milestone5.jpg", // Add your image path here
     },
     {
-      name: "Mr. Eaglestone",
+      name: "Mr. Kumar",
       amount: 12000000,
       image: "images/milestone6.jpg", // Add your image path here
     },
     {
-      name: "Mr. Popple",
+      name: "Mr. Eaglestone",
       amount: 15000000,
       image: "images/milestone7.jpg", // Add your image path here
     },
     {
-      name: "Ms. Kilpatrick",
+      name: "Mr. Popple",
       amount: 18000000,
       image: "images/milestone8.jpg", // Add your image path here
     },
